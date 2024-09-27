@@ -28,6 +28,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {" "}
+        <div className="text-2xl flex justify-center p-1 bg-slate-200 text-black font-bold">
+          Medium
+        </div>
         {children}
       </body>
     </html>
