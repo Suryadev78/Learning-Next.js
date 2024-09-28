@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+console.log("inside db");
 
 // Extend the global object in TypeScript
 declare global {
@@ -12,6 +13,7 @@ let prisma: PrismaClient;
 
 // Check if `globalThis.prisma` exists, otherwise create a new instance
 if (typeof globalThis.prisma === "undefined") {
+  console.log("connecting to database...");
   prisma = new PrismaClient();
   if (process.env.NODE_ENV !== "production") {
     globalThis.prisma = prisma; // In non-production environments, attach it to `globalThis`
