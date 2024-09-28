@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import client from "@/app/db";
 
 export async function GET() {
   return Response.json({
@@ -6,12 +6,11 @@ export async function GET() {
     email: "suryadev@gmail.com",
   });
 }
-const prisma = new PrismaClient();
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const findUser = await prisma.user.findFirst({
+    const findUser = await client.user.findFirst({
       where: {
         username: body.username,
         password: body.password,
@@ -26,7 +25,7 @@ export async function POST(req: Request) {
         { status: 409 }
       );
     }
-    const createUser = await prisma.user.create({
+    const createUser = await client.user.create({
       data: {
         username: body.username,
         password: body.password,
